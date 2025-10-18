@@ -8,11 +8,11 @@ const knex = require('knex');
 const db = knex({
 	client:'pg',
 	connection:{
-		host :process.env.'127.0.0.1',
-		port :parseInt (process.env.port) || 5432 ,
-		user :process.env.'postgres',
-		password :process.env.'46761382',
-		database :process.env.'smartbrain'
+		host :process.env.BD_HOST,
+		port :parseInt (process.env.BD_PORT) ,
+		user :process.env.BD_USER,
+		password :process.env.BD_PASSWORD,
+		database :process.env.BD_NAME
 	}
 });
 
@@ -23,7 +23,7 @@ app.use(cors());
 
 
 app.get('/' , (req,res)=>{
-	res.json(db.users);
+	res.json(database.users);
 })
 
 app.post('/signin' , (req,res)=>{
@@ -96,7 +96,7 @@ app.put('/image', (req,res)=> {
 	.increment('entries' , 1)
 	.returning('entries')
 	.then(entries => {
-		res.status(400).json((entries[0].entries));
+		res.json((entries[0].entries));
 	})
 })
 
