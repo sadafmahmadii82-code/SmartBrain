@@ -70,10 +70,7 @@ app.post('/register' , (req,res)=>{
 				.then(trx.commit)
 				.catch(trx.rollback)
 	       })
-			.catch(err) {
-				console.error(err);
-				res.status(400).json('unable to join');
-			}
+			.catch(err => res.status(400).json('unable to join'))
      })
 
 app.get('/profile/:id', (req,res)=>{
