@@ -8,11 +8,11 @@ const knex = require('knex');
 const db = knex({
 	client:'pg',
 	connection:{
-		host :process.env.BD_HOST,
-		port :parseInt (process.env.BD_PORT) ,
-		user :process.env.BD_USER,
-		password :process.env.BD_PASSWORD,
-		database :process.env.BD_NAME
+		host :process.env.DB_HOST,
+		port :parseInt (process.env.DB_PORT) ,
+		user :process.env.DB_USER,
+		password :process.env.DB_PASSWORD,
+		database :process.env.DB_NAME
 	}
 });
 
