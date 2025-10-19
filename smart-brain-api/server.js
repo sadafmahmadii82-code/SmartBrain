@@ -22,9 +22,15 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
-app.get('/' , (req,res)=>{
-	res.json('Server is running');
-})
+app.get('/', async (req, res) => {
+  try {
+    const users = await db.select('*').from('users');
+    res.json(users);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json('Database connection failed');
+  }
+});
 
 app.post('/signin' , (req,res)=>{
 	db.select('email','hash').from('login')
